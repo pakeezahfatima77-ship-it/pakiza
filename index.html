@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Who Knows PAKEEZAH Best? 🍇</title>
+<style>
+:root{--bg:#f8fbf6;--panel:#ffffff;--panel2:#f0f6ed;--text:#26352a;--muted:#748174;--pink:#a8c79b;--purple:#dce9d5;--line:#dce7d7;--good:#4f9365;--bad:#cf7777}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(ellipse at 15% 0%,#e7f0df 0,transparent 42%),radial-gradient(ellipse at 90% 20%,#f0f6e9 0,transparent 38%),var(--bg);display:flex;align-items:center;justify-content:center;padding:22px}
+button,input{font:inherit}
+.shell{width:min(100%,680px)}
+.topline{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;color:var(--muted);font-size:.8rem;letter-spacing:.12em;text-transform:uppercase}
+.logo{color:var(--pink);font-weight:800;letter-spacing:.08em}
+.card{background:linear-gradient(145deg,rgba(255,255,255,.98),rgba(249,252,247,.98));border:1px solid var(--line);border-radius:28px;padding:clamp(22px,5vw,42px);box-shadow:0 24px 70px #7c97751f;position:relative;overflow:hidden}
+.card:before{content:"";position:absolute;width:220px;height:220px;border-radius:50%;background:#a8c79b20;right:-80px;top:-100px;pointer-events:none}
+.eyebrow{color:var(--pink);text-transform:uppercase;letter-spacing:.18em;font-size:.75rem;font-weight:800}
+h1{font-size:clamp(2.2rem,8vw,4.3rem);line-height:.98;letter-spacing:-.06em;margin:14px 0}
+h1 span{color:var(--pink)}
+p{color:var(--muted);line-height:1.65}
+.hero-icon{font-size:2.6rem;margin:12px 0}
+.name-label{display:block;margin:22px 0 8px;color:#354635;font-size:.9rem}
+input[type=text]{width:100%;background:#fbfdf9;border:1px solid var(--line);color:var(--text);padding:15px 16px;border-radius:14px;outline:none}
+input[type=text]:focus{border-color:var(--pink);box-shadow:0 0 0 3px #ff6fba18}
+.btn{border:0;border-radius:14px;padding:15px 20px;font-weight:800;cursor:pointer;transition:transform .15s,filter .15s}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.08)}
+.primary{width:100%;margin-top:16px;color:#243526;background:linear-gradient(100deg,#c4dcb8,#e1ecd9)}
+.secondary{background:var(--panel2);border:1px solid var(--line);color:var(--text)}
+.hidden{display:none!important}
+.progress-row{display:flex;justify-content:space-between;color:var(--muted);font-size:.85rem;margin-bottom:12px}
+.progress{height:6px;background:#e5ecdf;border-radius:99px;overflow:hidden;margin-bottom:28px}
+.progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--purple));transition:width .25s}
+.question-count{color:var(--pink);font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;font-weight:800}
+h2{font-size:clamp(1.5rem,5vw,2.15rem);letter-spacing:-.035em;line-height:1.2;margin:12px 0 22px}
+.options{display:grid;gap:11px}
+.option{display:flex;align-items:center;gap:12px;text-align:left;width:100%;padding:15px;border-radius:15px;border:1px solid var(--line);background:#fbfdf9;color:var(--text);cursor:pointer;transition:.15s}
+.option:hover{border-color:#a8c79b;background:#f1f7ed}
+.option .letter{display:grid;place-items:center;width:34px;height:34px;flex:0 0 34px;border-radius:10px;background:#e8f0e2;color:#63865b;font-weight:900}
+.option.selected{border-color:var(--pink);background:#edf5e8}
+.option.correct{border-color:var(--good);background:#e7f5e9}
+.option.wrong{border-color:var(--bad);background:#fbebeb}
+.feedback{margin-top:16px;padding:13px 15px;border-radius:12px;background:#f1f6ed;color:var(--muted);font-size:.9rem;line-height:1.5}
+.quiz-actions{display:flex;gap:10px;margin-top:20px}.quiz-actions .btn{flex:1}
+.result-score{font-size:clamp(4rem,16vw,7rem);line-height:1;font-weight:900;letter-spacing:-.08em;margin:22px 0 6px;background:linear-gradient(120deg,var(--pink),var(--purple));color:transparent;background-clip:text}
+.result-tag{display:inline-block;border:1px solid #c8ddbd;color:#54754d;border-radius:99px;padding:8px 12px;font-size:.8rem;font-weight:800}
+.result-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:24px}
+.tiny{font-size:.78rem;color:#8b9987;text-align:center;margin-top:18px}
+.confetti{font-size:1.7rem;letter-spacing:.3em;animation:softPulse 2.8s ease-in-out infinite}
+/* Soft aesthetic motion */
+@keyframes floatUp{0%{transform:translateY(110vh) rotate(0deg);opacity:0}12%{opacity:.48}85%{opacity:.35}100%{transform:translateY(-15vh) rotate(25deg);opacity:0}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes softPulse{0%,100%{transform:scale(1);opacity:.82}50%{transform:scale(1.045);opacity:1}}
+@keyframes sparkle{0%{transform:scale(.65) rotate(-10deg);opacity:0}55%{transform:scale(1.18) rotate(8deg);opacity:1}100%{transform:scale(1);opacity:1}}
+.heart{position:fixed;bottom:-40px;left:var(--left);font-size:var(--size);opacity:0;pointer-events:none;z-index:0;animation:floatUp var(--duration) linear var(--delay) infinite;color:#a8c79b}
+.shell{position:relative;z-index:1}.card{animation:fadeIn .55s ease both}.option{animation:fadeIn .35s ease both}.option.correct{border-color:var(--good);background:#e7f5e9}.option.wrong{border-color:var(--bad);background:#fbebeb}.sparkle-pop{display:inline-block;animation:sparkle .55s ease}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+@media(max-width:460px){body{padding:12px}.card{border-radius:22px;padding:23px 18px}.topline{font-size:.68rem}.quiz-actions{flex-direction:column}.result-actions{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="heart" style="--left:7%;--size:18px;--duration:16s;--delay:-5s">♡</div>
+<div class="heart" style="--left:19%;--size:14px;--duration:19s;--delay:-12s">✦</div>
+<div class="heart" style="--left:77%;--size:20px;--duration:17s;--delay:-8s">♡</div>
+<div class="heart" style="--left:91%;--size:13px;--duration:21s;--delay:-3s">✧</div>
+<main class="shell">
+  <div class="topline"><div class="logo">✦ BESTIE TEST</div><div>PAKEEZAH EDITION 🍇</div></div>
+  <section class="card" id="welcome">
+    <div class="eyebrow">The ultimate friendship quiz</div>
+    <div class="hero-icon">🍇 ✨ 🤍</div>
+    <h1>Who knows<br><span>PAKEEZAH</span><br>better?</h1>
+    <p>Think you know your bestie? Prove it. Answer her personal questions and see how well you know her. No cheating 👀</p>
+    <label class="name-label" for="playerName">Your name, bestie</label>
+    <input id="playerName" type="text" maxlength="32" placeholder="Type your name here…" autocomplete="name">
+    <button class="btn primary" id="startBtn">Let's play 🍇 <span aria-hidden="true">→</span></button>
+    <div class="tiny">UPDATED VERSION ✨ · 20 personal questions · Mixed answers · Score reveal at the end</div>
+  </section>
+
+  <section class="card hidden" id="quiz">
+    <div class="progress-row"><span id="playerLabel">BESTIE MODE</span><span id="progressText">01 / 09</span></div>
+    <div class="progress"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="question-count" id="questionCount">QUESTION 01</div>
+    <h2 id="questionText"></h2>
+    <div class="options" id="options"></div>
+    <div class="feedback hidden" id="feedback" aria-live="polite"></div>
+    <div class="quiz-actions">
+      <button class="btn secondary" id="backBtn">← Back</button>
+      <button class="btn primary" id="nextBtn" disabled>Lock it in →</button>
+    </div>
+  </section>
+
+  <section class="card hidden" id="memories">
+    <div class="eyebrow">One last thing, bestie 💌</div>
+    <div class="hero-icon">💗 ✨ 🫶</div>
+    <h2>Make it memorable</h2>
+    <p>These two answers are just for Pakeezah — they won't affect your quiz score.</p>
+    <label class="name-label" for="memoryAnswer">1. What is one thing about Pakeezah you will never forget?</label>
+    <textarea id="memoryAnswer" rows="3" placeholder="Write a favourite memory or something special…" style="width:100%;background:#fbfdf9;border:1px solid var(--line);color:var(--text);padding:15px 16px;border-radius:14px;resize:vertical;font:inherit"></textarea>
+    <label class="name-label" for="specialMessage">2. Write a special message for Pakeezah 💌</label>
+    <textarea id="specialMessage" rows="4" placeholder="Write your heartfelt message here…" style="width:100%;background:#fbfdf9;border:1px solid var(--line);color:var(--text);padding:15px 16px;border-radius:14px;resize:vertical;font:inherit"></textarea>
+    <button class="btn primary" id="finishBtn" style="width:100%;margin-top:16px">See final result ✨</button>
+    <div class="tiny">Take your time. The sweetest words are worth keeping 🤍</div>
+  </section>
+
+  <section class="card hidden" id="results">
+    <div class="eyebrow">Bestie results are in</div>
+    <div class="confetti">✦ ♡ ✦</div>
+    <h1 id="resultTitle">Bestie status?</h1>
+    <div class="result-score" id="scoreNumber">0/10</div>
+    <div class="result-tag" id="resultTag">THE MYSTERY FRIEND</div>
+    <p id="resultMessage"></p>
+    <p id="resultDetails"></p>
+    <div id="friendshipNotes" style="margin-top:18px;text-align:left;background:#f5f9f2;border:1px solid var(--line);border-radius:16px;padding:16px;white-space:pre-wrap;overflow-wrap:anywhere">
+      <strong>💌 A memory for Pakeezah</strong><p id="memoryDisplay"></p><strong>🤍 A special message</strong><p id="messageDisplay"></p>
+    </div>
+    <div class="result-actions">
+      <button class="btn primary" id="retryBtn">Play again ↻</button>
+      <button class="btn secondary" id="shareBtn">Share result ↗</button>
+    </div>
+    <div class="tiny">A little friendship quiz, made with love 🤍🍇</div><p class="feedback">💌 A special message from Pakeezah: Thank you for being part of my life. I value the love, trust, and memories we share. Keep being your lovely self! 🤍</p>
+  </section>
+</main>
+<script>
+/* Questions provided by Pakeezah, translated into English. */
+const questions = [
+ {q:"What would make Pakeezah distance herself from people close to her?", options:["Forgetting to reply to a message","Misusing her kindness and breaking her trust","Disagreeing with her once","Being busy with studies"], answer:1},
+ {q:"What is Pakeezah's favourite thing to do?", options:["Read books","Watch movies","Chat with her friends","Go shopping"], answer:2},
+ {q:"What is Pakeezah's favourite subject?", options:["Chemistry","Physics","Mathematics","Biology"], answer:3},
+ {q:"What irritates Pakeezah a lot?", options:["When someone is late","Loud noises","When someone gets upset with her","Being asked too many questions"], answer:2},
+ {q:"When does Pakeezah feel the worst?", options:["When plans get cancelled","When she trusts someone deeply, but they lie to her and break her trust","When she has a busy day","When someone disagrees with her"], answer:1},
+ {q:"What are Pakeezah's hobbies?", options:["Reading and painting","Cooking and gardening","Playing outdoor sports","Using her phone and sleeping"], answer:3},
+ {q:"What is Pakeezah's dream career?", options:["Doctor","Teacher","Psychologist","Lawyer"], answer:2},
+ {q:"What does Pakeezah give her friends the most?", options:["Gifts and money","Advice all the time","Funny nicknames","Love and trust"], answer:3},
+ {q:"What kind of people does Pakeezah like?", options:["People who are always busy","People who love her","People who never talk to her","People who only give advice"], answer:1},
+ {q:"What is Pakeezah’s biggest fear?", options:["Getting low marks","Losing her phone","Losing her friends","Being late"], answer:2},
+ {q:"What makes Pakeezah happiest?", options:["Receiving love and care","Being ignored","Getting into arguments","Being misunderstood"], answer:0},
+ {q:"What does Pakeezah value most in a friendship?", options:["Expensive gifts","Trust and loyalty","Popularity","Constant attention"], answer:1},
+ {q:"What hurts Pakeezah the most?", options:["A boring day","A difficult question","A broken promise","Rainy weather"], answer:2},
+ {q:"What would Pakeezah choose for a free day?", options:["Studying all day","Doing chores","Going shopping only","Chatting with her friends"], answer:3},
+ {q:"Which career does Pakeezah dream of?", options:["Psychologist","Pilot","Chef","Fashion designer"], answer:0},
+ {q:"What should a friend do if Pakeezah is upset?", options:["Ignore her","Listen and understand her","Laugh at her","Change the topic immediately"], answer:1},
+ {q:"What does Pakeezah appreciate in people?", options:["Showing off","Being popular","Genuine love","Giving expensive presents"], answer:2},
+ {q:"Which subject does Pakeezah like most?", options:["Physics","History","Chemistry","Biology"], answer:3},
+ {q:"What can break Pakeezah’s trust?", options:["Lying to her","Helping her","Keeping a promise","Supporting her"], answer:0},
+ {q:"What does Pakeezah give her close friends?", options:["Competition","Love and trust","Silent treatment","Unnecessary arguments"], answer:1}
+];
+let player = "Bestie", current = 0, answers = Array(questions.length).fill(null), locked = false;
+const $ = id => document.getElementById(id);
+function show(section){["welcome","quiz","memories","results"].forEach(id=>$(id).classList.toggle("hidden",id!==section))}
+function start(){if(!questions.length){alert("Questions will be added when Pakeezah provides them. 💚");return}player=$("playerName").value.trim()||"Bestie";current=0;answers=Array(questions.length).fill(null);$("playerLabel").textContent=player.toUpperCase()+" · BESTIE MODE";show("quiz");renderQuestion()}
+function renderQuestion(){
+ locked=false;const item=questions[current];$("questionCount").textContent="QUESTION "+String(current+1).padStart(2,"0");$("progressText").textContent=String(current+1).padStart(2,"0")+" / "+questions.length;$("progressFill").style.width=((current)/questions.length*100)+"%";$("questionText").textContent=item.q;$("options").innerHTML="";$("feedback").classList.add("hidden");if(answers[current]!==null){$("feedback").classList.remove("hidden");$("feedback").textContent=answers[current]===item.answer?"✨ Correct! You know Pakeezah so well! 🤍":"No worries, bestie 💗 Keep going — every friendship has more to discover."}$("nextBtn").disabled=answers[current]===null;$("nextBtn").textContent=current===questions.length-1?"See my result ✨":"Lock it in →";$("backBtn").disabled=current===0;$("backBtn").style.opacity=current===0?".45":"1";
+ item.options.forEach((opt,i)=>{const b=document.createElement("button");b.className="option";if(answers[current]!==null){if(i===item.answer)b.classList.add("correct");if(i===answers[current]&&i!==item.answer)b.classList.add("wrong");if(i===answers[current])b.classList.add("selected")}b.innerHTML='<span class="letter">'+String.fromCharCode(65+i)+'</span><span></span>';b.querySelector("span:last-child").textContent=opt;b.onclick=()=>{answers[current]=i;document.querySelectorAll(".option").forEach(x=>x.classList.remove("selected","correct","wrong"));document.querySelectorAll(".option")[item.answer].classList.add("correct");if(i!==item.answer)b.classList.add("wrong");b.classList.add("selected");$("feedback").classList.remove("hidden");if(i===item.answer){$("feedback").innerHTML='<span class="sparkle-pop">✨ Correct! You know Pakeezah so well! 🤍</span>'}else{$("feedback").textContent="No worries, bestie 💗 Keep going — every friendship has more to discover."}$("nextBtn").disabled=false};$("options").appendChild(b)});
+}
+function next(){if(answers[current]===null)return;if(current<questions.length-1){current++;renderQuestion()}else{show("memories")}}
+function finish(){$("memoryDisplay").textContent=$("memoryAnswer").value.trim()||"A lovely memory still waiting to be written 🤍";$("messageDisplay").textContent=$("specialMessage").value.trim()||"Pakeezah, you are special and I’m glad to have you in my life. 🤍";const score=answers.reduce((sum,a,i)=>sum+(a===questions[i].answer?1:0),0);$("progressFill").style.width="100%";$("scoreNumber").textContent=score+"/"+questions.length;$("resultTitle").textContent="Hey, "+player+"!";let tag,msg;if(score>=Math.ceil(questions.length*0.9)){tag="PAKEEZAH'S SOULMATE BESTIE 🖤";msg="OMG, you really know Pakeezah! Bestie level: legendary. She’s lucky to have you."}else if(score>=Math.ceil(questions.length*0.7)){tag="CERTIFIED BESTIE ✨";msg="You know Pakeezah pretty well! A few more chats and you’ll be unstoppable."}else if(score>=Math.ceil(questions.length*0.4)){tag="BESTIE IN TRAINING 🎀";msg="There’s still more to discover about Pakeezah. Time for a bestie catch-up!"}else{tag="MYSTERY FRIEND 👀";msg="Okay, there’s lots more to learn about Pakeezah. Take the quiz again after a proper bestie chat!"}$("resultTag").textContent=tag;$("resultMessage").textContent=msg;$("resultDetails").textContent="You got "+score+" out of "+questions.length+" answers right.";show("results")}
+$("startBtn").onclick=start;$("nextBtn").onclick=next;$("finishBtn").onclick=finish;$("backBtn").onclick=()=>{if(current>0){current--;renderQuestion()}};$("retryBtn").onclick=()=>{show("welcome");$("playerName").focus()};$("shareBtn").onclick=async()=>{const score=$("scoreNumber").textContent;const text="🖤 I got "+score+" on PAKEEZAH's Who Knows Me Better? quiz! Can you beat my score?";try{if(navigator.share)await navigator.share({title:"Who Knows PAKEEZAH Better?",text});else if(navigator.clipboard){await navigator.clipboard.writeText(text);$("shareBtn").textContent="Copied! ✓"}else window.prompt("Copy your result:",text)}catch(e){}};
+$("playerName").addEventListener("keydown",e=>{if(e.key==="Enter")start()});
+</script>
+</body>
+</html>
